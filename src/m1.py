@@ -108,11 +108,11 @@ def run_test_all():
     # broken_2(100, 150, window)  # Test 2 of broken_2
     # window.close_on_mouse_click()
 
-    # Test broken_3:
-    window = rg.RoseWindow(title='Testing BROKEN_3')
-    broken_3(5, rg.Point(100, 50), 80, 20, window)  # Test 1 of broken_3
-    broken_3(3, rg.Point(50, 150), 40, 50, window)  # Test 2 of broken_3
-    window.close_on_mouse_click()
+    # # Test broken_3:
+    # window = rg.RoseWindow(title='Testing BROKEN_3')
+    # broken_3(5, rg.Point(100, 50), 80, 20, window)  # Test 1 of broken_3
+    # broken_3(3, rg.Point(50, 150), 40, 50, window)  # Test 2 of broken_3
+    # window.close_on_mouse_click()
 
     # Test broken_4:
     window = rg.RoseWindow(title='Testing BROKEN_4')
@@ -260,7 +260,8 @@ def broken_4(x, y, radius, window):
       :type radius: int
       :type window: rg.RoseWindow
       """
-    circle = rg.Circle(rg.Point(x, y), 'radius')
+    window = rg.RoseWindow()
+    circle = rg.Circle(rg.Point(x, y), radius)
     circle.fill_color = 'green'
     circle.attach_to(window)
     window.render()
@@ -284,7 +285,7 @@ def broken_5(circle, window):
       :type circle: rg.Circle
       :type window: rg.RoseWindow
     """
-    circle.attach_to(window)
+
     square = rg.Square(circle.center)
     square.outline_color = circle.fill_color
     square.attach_to(window)
