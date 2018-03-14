@@ -91,22 +91,22 @@ def main():
 ########################################################################
 def run_test_all():
     """ Tests ALL the functions in this module. """
-    # Test broken_1:
-    window = rg.RoseWindow(title='Testing BROKEN_1')
-    circle1 = rg.Circle(rg.Point(50, 50), 15)
-    circle1.fill_color = 'blue'
-    broken_1(circle1, window)  # Test 1 of broken_1
+    # # Test broken_1:
+    # window = rg.RoseWindow(title='Testing BROKEN_1')
+    # circle1 = rg.Circle(rg.Point(50, 50), 15)
+    # circle1.fill_color = 'blue'
+    # broken_1(circle1, window)  # Test 1 of broken_1
+    #
+    # circle2 = rg.Circle(rg.Point(70, 150), 30)
+    # circle2.fill_color = 'red'
+    # broken_1(circle2, window)  # Test 2 of broken_1
+    # window.close_on_mouse_click()
 
-    circle2 = rg.Circle(rg.Point(70, 150), 30)
-    circle2.fill_color = 'red'
-    broken_1(circle2, window)  # Test 2 of broken_1
-    window.close_on_mouse_click()
-
-    # Test broken_2:
-    window = rg.RoseWindow(title='Testing BROKEN_2')
-    broken_2(50, 75, window)  # Test 1 of broken_2
-    broken_2(100, 150, window)  # Test 2 of broken_2
-    window.close_on_mouse_click()
+    # # Test broken_2:
+    # window = rg.RoseWindow(title='Testing BROKEN_2')
+    # broken_2(50, 75, window)  # Test 1 of broken_2
+    # broken_2(100, 150, window)  # Test 2 of broken_2
+    # window.close_on_mouse_click()
 
     # Test broken_3:
     window = rg.RoseWindow(title='Testing BROKEN_3')
@@ -173,7 +173,7 @@ def broken_1(circle, window):
       :type window: rg.RoseWindow
     """
     circle.attach_to(window)
-    circle2 = rg.Circle(circle.radius * 2)
+    circle2 = rg.Circle(circle.center, circle.radius * 2)
     circle2.attach_to(window)
     window.render()
 
@@ -197,7 +197,7 @@ def broken_2(x, y, window):
       :type y:      int
       :type window: rg.RoseWindow
       """
-    circle = rg.Circle((x, y), 33)
+    circle = rg.Circle(rg.Point(x, y), 33)
     circle.attach_to(window)
     window.render()
 
@@ -233,12 +233,12 @@ def broken_3(n, point, length, distance_between_lines, window):
     a = rg.Point(point.x, point.y)
     b = rg.Point(point.x, point.y + length)
 
-    for _ in range(n):
+    for k in range(n):
         line = rg.Line(a, b)
         line.attach_to(window)
         window.render(0.5)
-        b = b + distance_between_lines
-
+        b.x = b.x + distance_between_lines
+        a.x = a.x + distance_between_lines
 
 # ----------------------------------------------------------------------
 # TODO: 6. Follow the INSTRUCTIONS AT THE TOP OF THIS MODULE
