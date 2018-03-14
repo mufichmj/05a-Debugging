@@ -114,36 +114,36 @@ def run_test_all():
     # broken_3(3, rg.Point(50, 150), 40, 50, window)  # Test 2 of broken_3
     # window.close_on_mouse_click()
 
-    # Test broken_4:
-    window = rg.RoseWindow(title='Testing BROKEN_4')
-    broken_4(50, 75, 40, window)  # Test 1 of broken_4
-    broken_4(100, 150, 75, window)  # Test 2 of broken_4
-    window.close_on_mouse_click()
+    # # Test broken_4:
+    # window = rg.RoseWindow(title='Testing BROKEN_4')
+    # broken_4(50, 75, 40, window)  # Test 1 of broken_4
+    # broken_4(100, 150, 75, window)  # Test 2 of broken_4
+    # window.close_on_mouse_click()
 
-    # Test broken_5:
-    window = rg.RoseWindow(title='Testing BROKEN_5')
-    circle = rg.Circle(rg.Point(100, 50), 30)
-    circle.fill_color = 'pink'
-    broken_5(circle, window)  # Test 1 of broken_5
+    # # Test broken_5:
+    # window = rg.RoseWindow(title='Testing BROKEN_5')
+    # circle = rg.Circle(rg.Point(100, 50), 30)
+    # circle.fill_color = 'pink'
+    # broken_5(circle, window)  # Test 1 of broken_5
+    #
+    # circle = rg.Circle(rg.Point(250, 100), 80)
+    # circle.fill_color = 'red'
+    # broken_5(circle, window)  # Test 2 of broken_5
+    # window.close_on_mouse_click()
 
-    circle = rg.Circle(rg.Point(250, 100), 80)
-    circle.fill_color = 'red'
-    broken_5(circle, window)  # Test 2 of broken_5
-    window.close_on_mouse_click()
-
-    # Test broken_6:
-    expected = 1.8333333
-    actual = broken_6(3)  # Test 1 of broken_6
-    print("Testing BROKEN_6:\n")
-    print('Expected for BROKEN_6, Test 1:', expected, '(approximately)')
-    print('  Actual for BROKEN_6, Test 1:', actual)
-
-    expected = 5.1873775
-    actual = broken_6(100)  # Test 2 of broken_6
-    print()
-    print('Expected for BROKEN_6, Test 2:', expected, '(approximately)')
-    print('  Actual for BROKEN_6, Test 2:', actual)
-    print()
+    # # Test broken_6:
+    # expected = 1.8333333
+    # actual = broken_6(3)  # Test 1 of broken_6
+    # print("Testing BROKEN_6:\n")
+    # print('Expected for BROKEN_6, Test 1:', expected, '(approximately)')
+    # print('  Actual for BROKEN_6, Test 1:', actual)
+    #
+    # expected = 5.1873775
+    # actual = broken_6(100)  # Test 2 of broken_6
+    # print()
+    # print('Expected for BROKEN_6, Test 2:', expected, '(approximately)')
+    # print('  Actual for BROKEN_6, Test 2:', actual)
+    # print()
 
     # Test broken_7:
     window = rg.RoseWindow(title='Testing BROKEN_7')
@@ -286,10 +286,12 @@ def broken_5(circle, window):
       :type window: rg.RoseWindow
     """
 
-    square = rg.Square(circle.center)
+    square = rg.Square(circle.center, circle.radius*2)
     square.outline_color = circle.fill_color
     square.attach_to(window)
     window.render()
+
+
 
 
 # ----------------------------------------------------------------------
@@ -304,8 +306,8 @@ def broken_6(n):
     Side effects:   None.
     """
     total = 0
-    for k in range(n + 1):
-        total = total + 1 / k
+    for k in range(n):
+        total = total + 1 / (k + 1)
 
     return total
 
@@ -343,10 +345,10 @@ def broken_7(n, point, length, distance_between_lines, window):
     for _ in range(n):
         line = rg.Line(left, right)
         line.attach_to(window)
-        window.render(0.5)
         left = rg.Point(left.x, left.y + distance_between_lines)
         right = rg.Point(right.x, right.y + distance_between_lines)
-    window.close_on_mouse_click()
+        window.render(0.5)
+
 
 
 # ----------------------------------------------------------------------
